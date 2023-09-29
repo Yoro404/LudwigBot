@@ -1,37 +1,4 @@
-/*const { Discord, SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const Levels = require('discord.js-leveling');
-const ms = require('ms');
 
-module.exports = {
-    data: new SlashCommandBuilder()
-    .setName("leaderboard")
-    .setDescription("Classement des membres"),
-
-
-    async run(bot, interaction, leaderboard) {
-        const { guildId } = interaction
-        const rawleaderboard = await Levels.fetchLeaderboard(interaction.guild.id, 10)
-        if (rawleaderboard.length < 1) return interaction.reply("Personne dans le leaderboard")
-        const embed = new EmbedBuilder();
-        const computedArray = [];
-        for (const key of leaderboard) {
-            const user = await bot.users.fetch(key.userID) || { username: "Unknown"};
-            computedArray.push({
-              guildID: key.guildID,
-              userID: key.userID,
-              xp: key.xp,
-              level: key.level,
-              position: (leaderboard.findIndex(i => i.guildID === key.guildID && i.userID === key.userID) + 1),
-              username: user.username,
-        });
-        const leaderboard = await Levels.computeLeaderboard(bot, rawleaderboard, true);
-        //const lb = rawleaderboard.map(e => `**${e.position}.** ${e.user.username}\n**Level :** ${e.level}\n**XP :** ${e.xp.toLocaleString()}`);
-        const lb =leaderboard.map(key => `** ${key.position}.** ${key.user.username}\n**Level :** ${key.level}\n**XP :** ${key.xp.toLocaleString()}`)
-        embed.setTitle("Leaderboard").setDescription(lb.join("\n")).setTimestamp();
-        return interaction.reply({embeds: [embed]});
-          } 
-    }
-}*/
 
 
 const { Discord, SlashCommandBuilder, EmbedBuilder } = require('discord.js');
@@ -43,7 +10,7 @@ module.exports = {
         .setName("leaderboard")
         .setDescription("Classement des membres"),
 
-    async run(bot, interaction) {
+    async execute(bot, interaction) {
         const { guildId } = interaction
         const rawleaderboard = await Levels.fetchLeaderboard(interaction.guild.id, 10)
         if (rawleaderboard.length < 1) return interaction.reply("Personne dans le leaderboard")

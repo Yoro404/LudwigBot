@@ -5,7 +5,7 @@ module.exports = {
     data: new SlashCommandBuilder()
     .setName('citation')
     .setDescription('Citation aléatoire'),
-    async run(bot, interaction) {
+    async execute(bot, interaction) {
         const embed1 = new EmbedBuilder()
             .setColor('Aqua')
             .setDescription(`Recherche en cours`)

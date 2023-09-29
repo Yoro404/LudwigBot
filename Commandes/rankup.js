@@ -1,5 +1,5 @@
 const { Discord, SlashCommandBuilder, EmbedBuilder } = require("discord.js")
-const Levels = require("discord.js-leveling")
+const XP = require("../xp_system/XP")
 const ms = require('ms');
 
 module.exports = {
@@ -7,14 +7,14 @@ module.exports = {
     .setName("rankup")
     .setDescription("Combien d'xp avant le prochain niveau"),
 
-    async run(bot, interaction) {
+    async execute(bot, interaction) {
         const {options} = interaction
 
-        const levelUser = await Levels.fetch(interaction.user.id, interaction.guild.id)
+        const levelUser = await XP.InfoUser({bot: bot, msg: interaction, players: interaction.user})
 
-        const niveau = (levelUser.level + 1);
+        const niveau = (levelUser.Lvl + 1);
 
-        const xpAmount = Levels.xpFor(niveau);
+        const xpAmount = levelUser.XpMax - levelUser.Xp 
 
         const embed = new EmbedBuilder()
         .setTitle('**Rank Up**')

@@ -6,7 +6,7 @@ module.exports = {
     .setName('gif')
     .setDescription('Rechercher un gif')
     .addStringOption(option => option.setName('mot-clé').setDescription('Que veux tu chercher').setRequired(true)),
-    async run (bot, interaction) {
+    async execute (bot, interaction) {
         await interaction.reply({ content: '.'})
         const { options } = interaction;
         const query = options.getString('mot-clé');

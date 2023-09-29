@@ -6,7 +6,7 @@ module.exports = {
         .setDescription("bah le ping gros t'es con ou quoi ?")
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
     
-    async run(bot, message) {
+    async execute(bot, message) {
         await message.reply(`Ping : ${(bot.ws.ping)}`)
     }
 }
