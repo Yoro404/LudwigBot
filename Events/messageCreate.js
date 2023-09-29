@@ -1,38 +1,17 @@
 const Discord = require('discord.js');
 const {EmbedBuilder} = require("discord.js");
-const Levels = require('discord.js-leveling');
+const XP = require('../xp_system/XP');
 
 module.exports = async (bot, message, interaction) => {
         if (!message.guild || message.author.bot) return;
 
         if (message.content.length < 3) return;
-        
-        var randomAmountOfXp = Math.floor(Math.random() * 26) + 1;
-        if (message.content.length > 15) {randomAmountOfXp + 5}
-        if (message.attachments.size > 0) {randomAmountOfXp + 10}
+        console.log(message.content)
+        var randomAmountOfXp = Math.floor(Math.random() * 26) + 2;
 
 
-        const hasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, randomAmountOfXp);
-
-        if (hasLeveledUp) {
-            const user = await Levels.fetch(message.author.id, message.guild.id)
-
-            const levelEmbed = new EmbedBuilder()
-                .setTitle(`Notre très chère client(e)`)
-                .setDescription(`${message.author}\nAugmente notre chiffre d'affaire de **${user.level} 000€**! `)
-                .setColor('Blurple')
-                .setTimestamp()
-                .setThumbnail(message.author.displayAvatarURL({ format: 'png', dynamic: true }))
-                .setFooter({text: 'Ludwig Café', iconURL: 'https://cdn.discordapp.com/icons/1126842220205584474/a_87f28156d1a716785ce6b88758030792.gif'})
-
-            const channelle = '1126844297191370764'
-            const channellles = bot.channels.cache.get(channelle);
-            const sendEmbed = await channellles.send({embeds: [levelEmbed]});
-            sendEmbed.react('☕');
-
-
-        }
-}
+        const addxp = await XP.AddXP({msg: message, xp: randomAmountOfXp});
+    }
 
 /*module.exports = {
     name: "messageCreate",

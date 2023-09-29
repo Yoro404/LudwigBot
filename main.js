@@ -1,11 +1,11 @@
-const Discord = require("discord.js")
-const bot = new Discord.Client({intents: 3276799 })
+const {IntentsBitField, Client, Partials, Collection} = require("discord.js")
+const bot = new Client({intents: 3276799});
 const config = require("./config.js")
 var colors = require('colors');
 
 
 
-bot.commands = new Discord.Collection()
+bot.commands = new Collection()
 let loadCommands = require("./Loader/loadCommands")
 let loadEvents = require("./Loader/loadEvents")
 let loadSlashCommands = require("./Loader/loadSlashCommands")
